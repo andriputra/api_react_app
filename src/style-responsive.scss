@@ -1,0 +1,17 @@
+@import './style.colors.scss';
+
+/* Small Phone */
+@media (min-width: 320px) and (max-width: 767px) {
+    body{
+        h1{
+            &.title{
+                color: $yellow;
+            }
+        }
+    }
+}
+
+/* Tablet device */
+@media (min-width: 768px) and (max-width: 1024px) {
+    
+}
