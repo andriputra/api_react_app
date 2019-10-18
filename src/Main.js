@@ -15,7 +15,7 @@ class Main extends Component {
           <div className="navHead side">
             <div className="side_left">
               <div className="logo">
-                <h2>happymovie</h2>
+                <h2><NavLink exact to="/">Happymovie</NavLink></h2>
               </div>
             </div>
             <div className="side_right">

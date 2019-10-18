@@ -20,8 +20,11 @@ body {
         .logo{
           h2{
             margin: 0px;
-            font-family: 'Fugaz One', cursive;
-            color: $yellow;
+            a{
+              font-family: 'Fugaz One', cursive;
+              color: $yellow;
+              text-decoration: none;
+            }
           }
         }
       }
@@ -138,7 +141,8 @@ body {
             .desc{
               h4{
                 margin: 20px 0px 10px;
-                color: $gray02;
+                color: $gray01;
+                font-size: 14px;
               }
               p{
                 color: $gray03;
