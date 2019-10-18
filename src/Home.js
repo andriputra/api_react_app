@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-class Home extends Component {
+import axios from "axios";
 
+export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,50 +10,74 @@ class Home extends Component {
   }
 
   componentDidMount() {
-      fetch("https://randomuser.me/api/?results=10")
-        .then(res => res.json())
-        .then(parsedJSON => parsedJSON.results.map(data => (
+    axios.get("https://ghibliapi.herokuapp.com/films")
+      .then(parsedJSON => {
+        return parsedJSON.data.map(data =>(
           {
-            id: `${data.id.name}`,
-            firstName: `${data.name.first}`,
-            lastName: `${data.name.last}`,
-            location: `${data.location.state}, ${data.nat}`,
-            thumbnail: `${data.picture.large}`,
-
+            id: `${data.id}`,
+            title: `${data.title}`,
+            rt_score: `${data.rt_score}`,
+            director: `${data.director}`,
+            producer: `${data.producer}`,
+            release_date: `${data.release_date}`,
+            description: `${data.description}`
           }
-        )))
-        .then(items => this.setState({
-          items,
-          isLoaded: false
-        }))
-        .catch(error => console.log('parsing failed', error))
-    }
-
-    render() {
-      const {items } = this.state;
-        return (
-          <div className="boxWhite">
-            <h2>Random User</h2>
-            {
-              items.length > 0 ? items.map(item => {
-              const {id, firstName, lastName, location, thumbnail} = item;
-               return (
-
-               <div key={id} className="bgCircle">
-               <center><img src={thumbnail} alt={firstName} className="circle"/> </center><br />
-               <div className="ctr">
-                  {firstName} {lastName}<br />
-                  {location}
-                </div>
-
-              </div>
-              );
-            }) : null
-          }
-          </div>
-        );
-
-    }
+        ))
+      })
+      .then(items => this.setState({
+        items: [
+          ...this.state.items.slice(0, 0),
+          ...items,
+        ],
+        isLoaded: false
+      }))
+      .catch(error => console.log('parsing failed', error))
   }
 
-export default Home;
+  render() {
+    const { items } = this.state;
+    return (
+      <div className="boxWhite">
+        {
+          (items || []).length > 0 ? items.map(item => {
+            const { id, title, rt_score, director, producer, release_date, description } = item;
+            return (
+              <div key={id} className="boxItem">
+                <div className="boxItem__thumb">
+                  <img src="https://via.placeholder.com/200x250"/>
+                </div>
+                <div className="boxItem__description">
+                  <h3>{title} <span className="rating">{rt_score}</span></h3>
+                  <div className="boxItem__description__detail">
+                    <table>
+                      <tr>
+                        <td><p>Director</p></td>
+                        <td><p>:</p></td>
+                        <td><p>{director}</p></td>
+                      </tr>
+                      <tr>
+                        <td><p>Producer</p></td>
+                        <td><p>:</p></td>
+                        <td><p>{producer}</p></td>
+                      </tr>
+                      <tr>
+                        <td><p>Release</p></td>
+                        <td><p>:</p></td>
+                        <td><p>{release_date}</p></td>
+                      </tr>
+                    </table>
+                    <dic className="desc">
+                      <h4>Sinopsis</h4>
+                      <p>{description}</p>
+                    </dic>
+                  </div>
+                </div>
+              </div>
+            );
+          }) : null
+        }
+      </div>
+    );
+
+  }
+}
