@@ -41,6 +41,10 @@ body {
               a{
                 color: $white;
                 text-decoration: none;
+                &:hover{
+                  cursor: pointer;
+                  color: $yellow;
+                }
               }
             }
           }
@@ -142,6 +146,19 @@ body {
               }
             }
           }
+        }
+      }
+      .aboutPage{
+        h2{
+          margin-top: 0px;
+          color: $white;
+          border-bottom: 1px solid $gray01;
+          padding-bottom: 20px;
+          margin-bottom: 30px;
+        }
+        p{
+          color: $white;
+          font-size: 14px;
         }
       }
     }
