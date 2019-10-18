@@ -64,14 +64,33 @@ body {
         width: 100%;
       }
     }
+    h2{
+      &.bigTitle{
+        margin-top: 0px;
+        color: $white;
+        border-bottom: 1px solid $gray01;
+        padding-bottom: 20px;
+        margin-bottom: 50px;
+      }
+    }
     .content{
-      padding: 80px;
+      padding: 40px 80px;
       .boxItem{
-        display: flex;
+        display: inline-block;
         font-size: 0;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
+        width: 50%;
+        &__div{
+          display: flex;
+          padding-right: 30px;
+        }
+        &:nth-child(even){
+          &__div{
+            padding-right: 0px;
+          }
+        }
         &__thumb{
-          flex: 0 0 18%;
+          flex: 0 0 35%;
           img{
             border-radius: 4px;
           }
@@ -124,6 +143,15 @@ body {
             }
           }
         }
+      }
+    }
+    .footer{
+      background-color: $black;
+      padding: 10px 80px;
+      p{
+        text-align: center;
+        margin-bottom: 0px;
+        color: $gray01;
       }
     }
   }

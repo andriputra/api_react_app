@@ -40,6 +40,11 @@ class Main extends Component {
             <Route exact path="/turkey" component={Turkey}/>
             <Route exact path="/about" component={About}/>
           </div>
+          <div className="footer">
+            <div className="copyright">
+              <p>by Agus Andri Putra</p>
+            </div>
+          </div>
         </div>
       </HashRouter>
     );
